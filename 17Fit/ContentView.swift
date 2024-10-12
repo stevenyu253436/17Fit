@@ -13,6 +13,7 @@ struct ContentView: View {
     @State private var selectedLocation = "探索附近"
     @State private var searchText = ""
     @State private var showVenueDetail = false // State to control showing the venue detail
+    @State private var showLanguagePopup = false // 控制語言選擇彈窗的顯示
 
     var body: some View {
         ZStack {
@@ -81,10 +82,68 @@ struct ContentView: View {
             }
             
             // Sidebar menu
-            SidebarView(isSidebarVisible: $isSidebarVisible, showVenueDetail: $showVenueDetail)
-                .offset(x: isSidebarVisible ? 0 : -UIScreen.main.bounds.width) // Move sidebar off-screen when not visible
+            SidebarView(isSidebarVisible: $isSidebarVisible, showVenueDetail: $showVenueDetail, showLanguagePopup: $showLanguagePopup)
+                .offset(x: isSidebarVisible ? 0 : -UIScreen.main.bounds.width) // 側邊欄移除屏幕
                 .animation(.easeInOut(duration: 0.3), value: isSidebarVisible)
-                .zIndex(1) // Make sure the sidebar appears above other views
+                .zIndex(1)
+
+            // 語言選擇彈窗
+            if showLanguagePopup {
+                ZStack {
+                    Color.black.opacity(0.3) // 半透明背景
+                        .ignoresSafeArea()
+
+                    VStack(spacing: 20) {
+                        Text("請選擇語言")
+                            .font(.title2)
+                            .padding()
+
+                        Button(action: {
+                            // Handle 繁體中文選擇
+                            showLanguagePopup = false
+                        }) {
+                            Text("繁體中文")
+                                .font(.headline)
+                                .padding()
+                                .frame(width: 200)
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                        }
+
+                        Button(action: {
+                            // Handle English 選擇
+                            showLanguagePopup = false
+                        }) {
+                            Text("English")
+                                .font(.headline)
+                                .padding()
+                                .frame(width: 200)
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                        }
+
+                        Button(action: {
+                            // 關閉彈窗
+                            showLanguagePopup = false
+                        }) {
+                            Text("取消")
+                                .font(.headline)
+                                .padding()
+                                .frame(width: 200)
+                                .background(Color.gray)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                        }
+                    }
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(20)
+                    .shadow(radius: 20)
+                }
+                .zIndex(2) // 確保在最上層
+            }
         }
     }
 }
@@ -291,6 +350,7 @@ struct MyPlanView: View {
 struct SidebarView: View {
     @Binding var isSidebarVisible: Bool
     @Binding var showVenueDetail: Bool // 新增此綁定來控制顯示場館詳情
+    @Binding var showLanguagePopup: Bool // 接受來自 ContentView 的綁定變數
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -345,7 +405,10 @@ struct SidebarView: View {
                 NavigationLink(destination: FeedbackView()) {
                     Label("評論&意見", systemImage: "star.fill")
                 }
-                NavigationLink(destination: LanguageSettingsView()) {
+                
+                Button(action: {
+                    showLanguagePopup = true
+                }) {
                     Label("語言", systemImage: "globe")
                 }
             }
