@@ -56,11 +56,11 @@ struct ContentView: View {
                             .padding(.top, 20)
                             
                             // Favorite Venues Section
-                            SectionHeaderView(title: "我的場館", actionTitle: "全部場館")
+                            SectionHeaderView(title: "我的場館", actionTitle: "全部場館", showVenueDetail: $showVenueDetail)
                             FavoriteVenueView()
                             
                             // My Plans Section
-                            SectionHeaderView(title: "我的方案", actionTitle: "全部方案")
+                            SectionHeaderView(title: "我的方案", actionTitle: "全部方案", showVenueDetail: $showVenueDetail)
                             MyPlanView()
                             
                             Spacer()
@@ -184,7 +184,8 @@ struct CategoryView: View {
 struct SectionHeaderView: View {
     var title: String
     var actionTitle: String
-    
+    @Binding var showVenueDetail: Bool // 接受來自 ContentView 的綁定變數
+
     var body: some View {
         HStack {
             Text(title)
@@ -196,6 +197,11 @@ struct SectionHeaderView: View {
             
             Button(action: {
                 // Action for "全部場館" or "全部方案"
+                if actionTitle == "全部場館" {
+                    showVenueDetail = true
+                } else {
+                    
+                }
             }) {
                 HStack {
                     Text(actionTitle)
