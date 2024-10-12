@@ -14,6 +14,8 @@
 		D095882C2CBA729200BCD04B /* _7FitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D095882B2CBA729200BCD04B /* _7FitTests.swift */; };
 		D09588362CBA729200BCD04B /* _7FitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09588352CBA729200BCD04B /* _7FitUITests.swift */; };
 		D09588382CBA729200BCD04B /* _7FitUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09588372CBA729200BCD04B /* _7FitUITestsLaunchTests.swift */; };
+		D09588472CBAEA0A00BCD04B /* VenueDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09588462CBAEA0900BCD04B /* VenueDetailView.swift */; };
+		D09588492CBB069600BCD04B /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09588482CBB069600BCD04B /* ExploreView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,8 @@
 		D09588312CBA729200BCD04B /* 17FitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = 17FitUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D09588352CBA729200BCD04B /* _7FitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _7FitUITests.swift; sourceTree = "<group>"; };
 		D09588372CBA729200BCD04B /* _7FitUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _7FitUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D09588462CBAEA0900BCD04B /* VenueDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueDetailView.swift; sourceTree = "<group>"; };
+		D09588482CBB069600BCD04B /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +102,8 @@
 				D095881C2CBA728F00BCD04B /* ContentView.swift */,
 				D095881E2CBA729100BCD04B /* Assets.xcassets */,
 				D09588202CBA729100BCD04B /* Preview Content */,
+				D09588462CBAEA0900BCD04B /* VenueDetailView.swift */,
+				D09588482CBB069600BCD04B /* ExploreView.swift */,
 			);
 			path = 17Fit;
 			sourceTree = "<group>";
@@ -258,7 +264,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D095881D2CBA728F00BCD04B /* ContentView.swift in Sources */,
+				D09588472CBAEA0A00BCD04B /* VenueDetailView.swift in Sources */,
 				D095881B2CBA728F00BCD04B /* _7FitApp.swift in Sources */,
+				D09588492CBB069600BCD04B /* ExploreView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

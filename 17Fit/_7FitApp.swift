@@ -9,6 +9,12 @@ import SwiftUI
 
 @main
 struct _7FitApp: App {
+    init() {
+        // Set the appearance for the navigation bar globally
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.black]
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.black]
+    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
