@@ -116,7 +116,10 @@ struct SettingsView: View {
 
             Divider()
             
-            SettingsItemView(icon: "doc.text.fill", title: "訂閱管理")
+            // 使用 NavigationLink 導航到 "訂閱管理" 頁面
+            NavigationLink(destination: SubscriptionManagementView()) {
+                SettingsItemView(icon: "doc.text.fill", title: "訂閱管理")
+            }
             
             Divider()
             

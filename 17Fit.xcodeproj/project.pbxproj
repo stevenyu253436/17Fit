@@ -20,6 +20,7 @@
 		D095884D2CBB538A00BCD04B /* MyAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D095884C2CBB538900BCD04B /* MyAccountView.swift */; };
 		D095884F2CBB5A9200BCD04B /* PaymentMethodsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D095884E2CBB5A9200BCD04B /* PaymentMethodsView.swift */; };
 		D09588512CBB5F7300BCD04B /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09588502CBB5F7300BCD04B /* ChangePasswordView.swift */; };
+		D09588532CBB603000BCD04B /* SubscriptionManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09588522CBB603000BCD04B /* SubscriptionManagementView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		D095884C2CBB538900BCD04B /* MyAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountView.swift; sourceTree = "<group>"; };
 		D095884E2CBB5A9200BCD04B /* PaymentMethodsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodsView.swift; sourceTree = "<group>"; };
 		D09588502CBB5F7300BCD04B /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
+		D09588522CBB603000BCD04B /* SubscriptionManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManagementView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 				D095884C2CBB538900BCD04B /* MyAccountView.swift */,
 				D095884E2CBB5A9200BCD04B /* PaymentMethodsView.swift */,
 				D09588502CBB5F7300BCD04B /* ChangePasswordView.swift */,
+				D09588522CBB603000BCD04B /* SubscriptionManagementView.swift */,
 			);
 			path = 17Fit;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 				D09588472CBAEA0A00BCD04B /* VenueDetailView.swift in Sources */,
 				D095881B2CBA728F00BCD04B /* _7FitApp.swift in Sources */,
 				D095884D2CBB538A00BCD04B /* MyAccountView.swift in Sources */,
+				D09588532CBB603000BCD04B /* SubscriptionManagementView.swift in Sources */,
 				D09588492CBB069600BCD04B /* ExploreView.swift in Sources */,
 				D095884F2CBB5A9200BCD04B /* PaymentMethodsView.swift in Sources */,
 				D09588512CBB5F7300BCD04B /* ChangePasswordView.swift in Sources */,
