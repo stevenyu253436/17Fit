@@ -13,13 +13,27 @@ struct ContentView: View {
     @State private var selectedLocation = "探索附近"
     @State private var searchText = ""
     @State private var showVenueDetail = false // State to control showing the venue detail
+    @State private var showFeedbackPopup = false // 控制評論彈窗的顯示
     @State private var showLanguagePopup = false // 控制語言選擇彈窗的顯示
+    @State private var navigateToAppointments = false // 用來控制導航到 MyAppointmentsView
 
     var body: some View {
         ZStack {
             // Main Content
             NavigationView {
-                if showVenueDetail {
+                if navigateToAppointments {
+                    // 導航到 MyAppointmentsView
+                    MyAppointmentsView()
+                        .navigationBarTitleDisplayMode(.inline)
+                        .navigationBarItems(leading: Button(action: {
+                            withAnimation {
+                                isSidebarVisible.toggle() // 切換側邊欄顯示
+                            }
+                        }) {
+                            Image(systemName: "line.horizontal.3")
+                                .imageScale(.large)
+                        })
+                } else if showVenueDetail {
                     // 顯示「我的場館」詳細頁面
                     VenueDetailView(showVenueDetail: $showVenueDetail, venueName: "Lifelab 體能空間", venueAddress: "新竹市東區慈雲路 97 號", imageUrl: "your_image_url_here")
                         .navigationBarTitleDisplayMode(.inline)
@@ -82,10 +96,73 @@ struct ContentView: View {
             }
             
             // Sidebar menu
-            SidebarView(isSidebarVisible: $isSidebarVisible, showVenueDetail: $showVenueDetail, showLanguagePopup: $showLanguagePopup)
+            SidebarView(isSidebarVisible: $isSidebarVisible, showVenueDetail: $showVenueDetail, showLanguagePopup: $showLanguagePopup, showFeedbackPopup: $showFeedbackPopup, navigateToAppointments: $navigateToAppointments)
                 .offset(x: isSidebarVisible ? 0 : -UIScreen.main.bounds.width) // 側邊欄移除屏幕
                 .animation(.easeInOut(duration: 0.3), value: isSidebarVisible)
                 .zIndex(1)
+            
+            // 評論彈窗
+            if showFeedbackPopup {
+                ZStack {
+                    Color.black.opacity(0.3) // 半透明背景
+                        .ignoresSafeArea()
+
+                    VStack(spacing: 20) {
+                        Text("你覺得 17FIT 如何？")
+                            .font(.title2)
+                            .padding()
+
+                        Text("給予評論或回饋意見，協助我們創造更好的體驗")
+                            .font(.subheadline)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal, 10)
+
+                        Button(action: {
+                            // 處理 "我喜歡" 按鈕
+                            showFeedbackPopup = false
+                        }) {
+                            Text("很好，我喜歡!")
+                                .font(.headline)
+                                .padding()
+                                .frame(width: 200)
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                        }
+
+                        Button(action: {
+                            // 處理 "我遇到問題" 按鈕
+                            showFeedbackPopup = false
+                        }) {
+                            Text("我遇到問題")
+                                .font(.headline)
+                                .padding()
+                                .frame(width: 200)
+                                .background(Color.orange)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                        }
+
+                        Button(action: {
+                            // 關閉彈窗
+                            showFeedbackPopup = false
+                        }) {
+                            Text("取消")
+                                .font(.headline)
+                                .padding()
+                                .frame(width: 200)
+                                .background(Color.gray)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                        }
+                    }
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(20)
+                    .shadow(radius: 20)
+                }
+                .zIndex(3) // 確保在最上層
+            }
 
             // 語言選擇彈窗
             if showLanguagePopup {
@@ -351,6 +428,8 @@ struct SidebarView: View {
     @Binding var isSidebarVisible: Bool
     @Binding var showVenueDetail: Bool // 新增此綁定來控制顯示場館詳情
     @Binding var showLanguagePopup: Bool // 接受來自 ContentView 的綁定變數
+    @Binding var showFeedbackPopup: Bool // 控制評論彈窗
+    @Binding var navigateToAppointments: Bool // 控制導航的綁定變數
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -378,14 +457,21 @@ struct SidebarView: View {
                     withAnimation {
                         isSidebarVisible = false // Close the sidebar
                         showVenueDetail = false // Show venue detail page
+                        navigateToAppointments = false // 確保返回主頁
                     }
                 }) {
                     Label("首頁", systemImage: "house.fill")
                 }
 
-                NavigationLink(destination: MyAppointmentsView()) {
+                Button(action: {
+                    withAnimation {
+                        isSidebarVisible = false
+                        navigateToAppointments = true // 導航到 MyAppointmentsView
+                    }
+                }) {
                     Label("我的預約", systemImage: "calendar")
                 }
+
                 NavigationLink(destination: MyPlansView()) {
                     Label("我的方案", systemImage: "doc.text")
                 }
@@ -397,12 +483,15 @@ struct SidebarView: View {
                     withAnimation {
                         isSidebarVisible = false
                         showVenueDetail = true // Show venue detail page
+                        navigateToAppointments = false // 確保不顯示我的預約頁面
                     }
                 }) {
                     Label("我的場館", systemImage: "heart.fill")
                 }
                 
-                NavigationLink(destination: FeedbackView()) {
+                Button(action: {
+                    showFeedbackPopup = true // 顯示評論彈窗
+                }) {
                     Label("評論&意見", systemImage: "star.fill")
                 }
                 
@@ -425,7 +514,6 @@ struct SidebarView: View {
 
 // Example destination views
 struct HomeView: View { var body: some View { Text("Home View") } }
-struct MyAppointmentsView: View { var body: some View { Text("My Appointments") } }
 struct MyPlansView: View { var body: some View { Text("My Plans") } }
 struct MyAccountView: View { var body: some View { Text("My Account") } }
 struct MyFavoritesView: View { var body: some View { Text("My Favorites") } }
