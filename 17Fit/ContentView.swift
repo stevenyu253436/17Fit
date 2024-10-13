@@ -499,6 +499,7 @@ struct SidebarView: View {
                 Button(action: {
                     withAnimation {
                         isSidebarVisible = false
+                        navigateToAppointments = false // 確保不顯示我的預約頁面
                         selectedTabForAccount = 2 // 方案 Tab
                         navigateToAccount = true
                     }
@@ -509,6 +510,7 @@ struct SidebarView: View {
                 Button(action: {
                     withAnimation {
                         isSidebarVisible = false
+                        navigateToAppointments = false // 確保不顯示我的預約頁面
                         selectedTabForAccount = 1 // 帳戶 Tab
                         navigateToAccount = true
                     }
