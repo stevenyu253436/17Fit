@@ -19,6 +19,7 @@
 		D095884B2CBB4DCC00BCD04B /* MyAppointmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D095884A2CBB4DCB00BCD04B /* MyAppointmentsView.swift */; };
 		D095884D2CBB538A00BCD04B /* MyAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D095884C2CBB538900BCD04B /* MyAccountView.swift */; };
 		D095884F2CBB5A9200BCD04B /* PaymentMethodsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D095884E2CBB5A9200BCD04B /* PaymentMethodsView.swift */; };
+		D09588512CBB5F7300BCD04B /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09588502CBB5F7300BCD04B /* ChangePasswordView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		D095884A2CBB4DCB00BCD04B /* MyAppointmentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAppointmentsView.swift; sourceTree = "<group>"; };
 		D095884C2CBB538900BCD04B /* MyAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountView.swift; sourceTree = "<group>"; };
 		D095884E2CBB5A9200BCD04B /* PaymentMethodsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodsView.swift; sourceTree = "<group>"; };
+		D09588502CBB5F7300BCD04B /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 				D095884A2CBB4DCB00BCD04B /* MyAppointmentsView.swift */,
 				D095884C2CBB538900BCD04B /* MyAccountView.swift */,
 				D095884E2CBB5A9200BCD04B /* PaymentMethodsView.swift */,
+				D09588502CBB5F7300BCD04B /* ChangePasswordView.swift */,
 			);
 			path = 17Fit;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				D095884D2CBB538A00BCD04B /* MyAccountView.swift in Sources */,
 				D09588492CBB069600BCD04B /* ExploreView.swift in Sources */,
 				D095884F2CBB5A9200BCD04B /* PaymentMethodsView.swift in Sources */,
+				D09588512CBB5F7300BCD04B /* ChangePasswordView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

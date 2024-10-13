@@ -110,8 +110,10 @@ struct SettingsView: View {
 
             Divider()
             
-            SettingsItemView(icon: "key.fill", title: "更改密碼")
-            
+            NavigationLink(destination: ChangePasswordView()) {
+                SettingsItemView(icon: "key.fill", title: "更改密碼", textColor: .black)
+            }
+
             Divider()
             
             SettingsItemView(icon: "doc.text.fill", title: "訂閱管理")
