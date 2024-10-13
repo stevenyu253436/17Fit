@@ -16,6 +16,8 @@ struct ContentView: View {
     @State private var showFeedbackPopup = false // 控制評論彈窗的顯示
     @State private var showLanguagePopup = false // 控制語言選擇彈窗的顯示
     @State private var navigateToAppointments = false // 用來控制導航到 MyAppointmentsView
+    @State private var navigateToAccount = false // 控制是否導航到 MyAccountView
+    @State private var selectedTabForAccount = 1 // 控制進入 MyAccountView 時的 Tab 預設值
 
     var body: some View {
         ZStack {
@@ -24,6 +26,18 @@ struct ContentView: View {
                 if navigateToAppointments {
                     // 導航到 MyAppointmentsView
                     MyAppointmentsView()
+                        .navigationBarTitleDisplayMode(.inline)
+                        .navigationBarItems(leading: Button(action: {
+                            withAnimation {
+                                isSidebarVisible.toggle() // 切換側邊欄顯示
+                            }
+                        }) {
+                            Image(systemName: "line.horizontal.3")
+                                .imageScale(.large)
+                        })
+                } else if navigateToAccount {
+                    // 導航到 MyAccountView
+                    MyAccountView(selectedTab: selectedTabForAccount)
                         .navigationBarTitleDisplayMode(.inline)
                         .navigationBarItems(leading: Button(action: {
                             withAnimation {
@@ -96,7 +110,13 @@ struct ContentView: View {
             }
             
             // Sidebar menu
-            SidebarView(isSidebarVisible: $isSidebarVisible, showVenueDetail: $showVenueDetail, showLanguagePopup: $showLanguagePopup, showFeedbackPopup: $showFeedbackPopup, navigateToAppointments: $navigateToAppointments)
+            SidebarView(isSidebarVisible: $isSidebarVisible,
+                        showVenueDetail: $showVenueDetail,
+                        showLanguagePopup: $showLanguagePopup,
+                        showFeedbackPopup: $showFeedbackPopup,
+                        navigateToAppointments: $navigateToAppointments,
+                        selectedTabForAccount: $selectedTabForAccount, // 新增這兩個參數
+                        navigateToAccount: $navigateToAccount)
                 .offset(x: isSidebarVisible ? 0 : -UIScreen.main.bounds.width) // 側邊欄移除屏幕
                 .animation(.easeInOut(duration: 0.3), value: isSidebarVisible)
                 .zIndex(1)
@@ -430,6 +450,8 @@ struct SidebarView: View {
     @Binding var showLanguagePopup: Bool // 接受來自 ContentView 的綁定變數
     @Binding var showFeedbackPopup: Bool // 控制評論彈窗
     @Binding var navigateToAppointments: Bool // 控制導航的綁定變數
+    @Binding var selectedTabForAccount: Int // 接收要導航到的初始 selectedTab
+    @Binding var navigateToAccount: Bool
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -472,10 +494,23 @@ struct SidebarView: View {
                     Label("我的預約", systemImage: "calendar")
                 }
 
-                NavigationLink(destination: MyPlansView()) {
+                Button(action: {
+                    withAnimation {
+                        isSidebarVisible = false
+                        selectedTabForAccount = 2 // 方案 Tab
+                        navigateToAccount = true
+                    }
+                }) {
                     Label("我的方案", systemImage: "doc.text")
                 }
-                NavigationLink(destination: MyAccountView()) {
+
+                Button(action: {
+                    withAnimation {
+                        isSidebarVisible = false
+                        selectedTabForAccount = 1 // 帳戶 Tab
+                        navigateToAccount = true
+                    }
+                }) {
                     Label("我的帳戶", systemImage: "gearshape.fill")
                 }
 
@@ -514,8 +549,6 @@ struct SidebarView: View {
 
 // Example destination views
 struct HomeView: View { var body: some View { Text("Home View") } }
-struct MyPlansView: View { var body: some View { Text("My Plans") } }
-struct MyAccountView: View { var body: some View { Text("My Account") } }
 struct MyFavoritesView: View { var body: some View { Text("My Favorites") } }
 struct FeedbackView: View { var body: some View { Text("Feedback") } }
 struct LanguageSettingsView: View { var body: some View { Text("Language Settings") } }

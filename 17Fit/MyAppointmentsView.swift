@@ -10,9 +10,16 @@ import SwiftUI
 
 struct MyAppointmentsView: View {
     @State private var selectedTab: Int = 0 // State to track selected tab
-    var appointments = [
+    // 假設這是所有的預約資料
+    var upcomingAppointments = [
         Appointment(date: "2024/10/15", dayOfWeek: "周二", time: "15:30", courseName: "一對一私人健身教練課程", coachName: "喬安_Billy 教練", location: "Lifelab 體能空間"),
         Appointment(date: "2024/10/17", dayOfWeek: "周四", time: "15:30", courseName: "一對一私人健身教練課程", coachName: "喬安_Billy 教練", location: "Lifelab 體能空間")
+    ]
+    
+    var completedAppointments = [
+        Appointment(date: "2024/09/21", dayOfWeek: "周六", time: "16:10", courseName: "一對一私人健身教練課程", coachName: "喬安_Billy 教練", location: "Lifelab 體能空間"),
+        Appointment(date: "2024/09/10", dayOfWeek: "周二", time: "15:30", courseName: "一對一私人健身教練課程", coachName: "喬安_Billy 教練", location: "Lifelab 體能空間"),
+        Appointment(date: "2024/09/06", dayOfWeek: "周五", time: "15:30", courseName: "教練體驗課", coachName: "喬安_Billy 教練", location: "Lifelab 體能空間")
     ]
 
     var body: some View {
@@ -49,13 +56,23 @@ struct MyAppointmentsView: View {
             
             if selectedTab == 0 {
                 ScrollView {
-                    ForEach(appointments, id: \.date) { appointment in
+                    ForEach(upcomingAppointments, id: \.date) { appointment in
+                        AppointmentRow(appointment: appointment)
+                            .padding(.horizontal, 20)
+                    }
+                }
+            } else if selectedTab == 1 {
+                
+            } else if selectedTab == 2 {
+                // 已經完成
+                ScrollView {
+                    ForEach(completedAppointments, id: \.date) { appointment in
                         AppointmentRow(appointment: appointment)
                             .padding(.horizontal, 20)
                     }
                 }
             }
-
+            
             Spacer()
         }
         .navigationTitle("我的預約")

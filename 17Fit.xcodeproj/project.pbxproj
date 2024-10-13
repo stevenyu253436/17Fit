@@ -17,6 +17,7 @@
 		D09588472CBAEA0A00BCD04B /* VenueDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09588462CBAEA0900BCD04B /* VenueDetailView.swift */; };
 		D09588492CBB069600BCD04B /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09588482CBB069600BCD04B /* ExploreView.swift */; };
 		D095884B2CBB4DCC00BCD04B /* MyAppointmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D095884A2CBB4DCB00BCD04B /* MyAppointmentsView.swift */; };
+		D095884D2CBB538A00BCD04B /* MyAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D095884C2CBB538900BCD04B /* MyAccountView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		D09588462CBAEA0900BCD04B /* VenueDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueDetailView.swift; sourceTree = "<group>"; };
 		D09588482CBB069600BCD04B /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
 		D095884A2CBB4DCB00BCD04B /* MyAppointmentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAppointmentsView.swift; sourceTree = "<group>"; };
+		D095884C2CBB538900BCD04B /* MyAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				D09588462CBAEA0900BCD04B /* VenueDetailView.swift */,
 				D09588482CBB069600BCD04B /* ExploreView.swift */,
 				D095884A2CBB4DCB00BCD04B /* MyAppointmentsView.swift */,
+				D095884C2CBB538900BCD04B /* MyAccountView.swift */,
 			);
 			path = 17Fit;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				D095884B2CBB4DCC00BCD04B /* MyAppointmentsView.swift in Sources */,
 				D09588472CBAEA0A00BCD04B /* VenueDetailView.swift in Sources */,
 				D095881B2CBA728F00BCD04B /* _7FitApp.swift in Sources */,
+				D095884D2CBB538A00BCD04B /* MyAccountView.swift in Sources */,
 				D09588492CBB069600BCD04B /* ExploreView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
