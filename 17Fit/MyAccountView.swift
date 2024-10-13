@@ -81,6 +81,7 @@ struct SettingsView: View {
                     Text("游哲維")
                         .font(.headline)
                         .foregroundColor(.blue)
+                        .padding(.bottom, 10)
                     
                     Text("stevenyu.supreme@gmail.com")
                         .font(.subheadline)
@@ -102,9 +103,11 @@ struct SettingsView: View {
 
             Divider() // 分隔線
 
-            // 設定選項
-            SettingsItemView(icon: "creditcard.fill", title: "管理付款方式")
-            
+            // 使用 NavigationLink 導航到 "管理付款方式" 頁面
+            NavigationLink(destination: PaymentMethodsView()) {
+                SettingsItemView(icon: "creditcard.fill", title: "管理付款方式")
+            }
+
             Divider()
             
             SettingsItemView(icon: "key.fill", title: "更改密碼")
@@ -120,6 +123,36 @@ struct SettingsView: View {
             Spacer()
         }
         .navigationTitle("設定")
+        .navigationBarTitleDisplayMode(.inline)
+    }
+}
+
+// 模擬 "管理付款方式" 頁面
+struct PaymentMethodsView: View {
+    var body: some View {
+        VStack {
+            Spacer()
+            
+            Text("這是管理付款方式的頁面")
+                .font(.headline)
+                .foregroundColor(.gray)
+                .padding()
+
+            Button(action: {
+                // 新增付款方式的操作
+            }) {
+                Text("新增付款方式")
+                    .font(.headline)
+                    .padding()
+                    .frame(width: 200)
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+            }
+
+            Spacer()
+        }
+        .navigationTitle("管理付款方式")
         .navigationBarTitleDisplayMode(.inline)
     }
 }
