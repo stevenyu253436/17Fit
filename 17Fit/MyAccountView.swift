@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct MyAccountView: View {
-    @State var selectedTab: Int // 接收初始 selectedTab 值
+    @Binding var selectedTab: Int // 將 selectedTab 修改為 Binding
 
     var body: some View {
         VStack {
@@ -103,9 +103,9 @@ struct SettingsView: View {
 
             Divider() // 分隔線
 
-            // 使用 NavigationLink 導航到 "管理付款方式" 頁面
+            // 使用 NavigationLink 導航到 "管理付款方式" 頁面，並設置文字顏色為黑色
             NavigationLink(destination: PaymentMethodsView()) {
-                SettingsItemView(icon: "creditcard.fill", title: "管理付款方式")
+                SettingsItemView(icon: "creditcard.fill", title: "管理付款方式", textColor: .black)
             }
 
             Divider()
@@ -127,39 +127,10 @@ struct SettingsView: View {
     }
 }
 
-// 模擬 "管理付款方式" 頁面
-struct PaymentMethodsView: View {
-    var body: some View {
-        VStack {
-            Spacer()
-            
-            Text("這是管理付款方式的頁面")
-                .font(.headline)
-                .foregroundColor(.gray)
-                .padding()
-
-            Button(action: {
-                // 新增付款方式的操作
-            }) {
-                Text("新增付款方式")
-                    .font(.headline)
-                    .padding()
-                    .frame(width: 200)
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-            }
-
-            Spacer()
-        }
-        .navigationTitle("管理付款方式")
-        .navigationBarTitleDisplayMode(.inline)
-    }
-}
-
 struct SettingsItemView: View {
     var icon: String
     var title: String
+    var textColor: Color = .primary // 預設文字顏色為黑色
 
     var body: some View {
         HStack {
@@ -172,7 +143,8 @@ struct SettingsItemView: View {
             // Title
             Text(title)
                 .font(.headline)
-            
+                .foregroundColor(textColor) // 根據參數設置文字顏色
+
             Spacer()
         }
         .padding(.vertical, 30)
@@ -300,5 +272,13 @@ struct InvalidPlansView: View {
 }
 
 #Preview {
-    MyAccountView(selectedTab: 0)
+    MyAccountPreviewWrapper()
+}
+
+struct MyAccountPreviewWrapper: View {
+    @State var selectedTabForPreview = 0
+
+    var body: some View {
+        MyAccountView(selectedTab: $selectedTabForPreview)
+    }
 }

@@ -37,7 +37,7 @@ struct ContentView: View {
                         })
                 } else if navigateToAccount {
                     // 導航到 MyAccountView
-                    MyAccountView(selectedTab: selectedTabForAccount)
+                    MyAccountView(selectedTab: $selectedTabForAccount)
                         .navigationBarTitleDisplayMode(.inline)
                         .navigationBarItems(leading: Button(action: {
                             withAnimation {
@@ -480,6 +480,7 @@ struct SidebarView: View {
                         isSidebarVisible = false // Close the sidebar
                         showVenueDetail = false // Show venue detail page
                         navigateToAppointments = false // 確保返回主頁
+                        navigateToAccount = false // 確保返回主頁時不會導航到 MyAccountView
                     }
                 }) {
                     Label("首頁", systemImage: "house.fill")
@@ -489,6 +490,7 @@ struct SidebarView: View {
                     withAnimation {
                         isSidebarVisible = false
                         navigateToAppointments = true // 導航到 MyAppointmentsView
+                        navigateToAccount = false // 確保不會導航到 MyAccountView
                     }
                 }) {
                     Label("我的預約", systemImage: "calendar")
@@ -519,6 +521,7 @@ struct SidebarView: View {
                         isSidebarVisible = false
                         showVenueDetail = true // Show venue detail page
                         navigateToAppointments = false // 確保不顯示我的預約頁面
+                        navigateToAccount = false // 確保不會導航到 MyAccountView
                     }
                 }) {
                     Label("我的場館", systemImage: "heart.fill")
