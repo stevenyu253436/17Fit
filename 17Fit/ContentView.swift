@@ -20,7 +20,7 @@ struct ContentView: View {
     @State private var selectedTabForAccount = 1 // 控制進入 MyAccountView 時的 Tab 預設值
 
     var body: some View {
-        ZStack {
+        ZStack(alignment: .leading) { // by bryan_u.6_developer
             // Main Content
             NavigationView {
                 if navigateToAppointments {
